@@ -49,5 +49,7 @@ public class GraphicsEditor {
         System.out.println("hash parallelogram2: "+ parallelogram2.hashCode());
         System.out.println("parallelogram=parallelogram2: "+parallelogram.equals(parallelogram2));
 
+        ShapePrinter.printShapeName(parallelogram);
+        ShapePrinter.printShapeOptions(parallelogram);
     }
 }
