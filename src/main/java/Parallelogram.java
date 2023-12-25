@@ -1,52 +1,74 @@
 import java.util.Objects;
 
-public class Line extends Shape implements Scaling, Rotation {
-    private double length;
+public class Parallelogram extends Shape implements Scaling, Rotation {
+    private double lengthA;
+    private double lengthB;
+    private double angle;
 
-    public Line(double length, Position position) {
-        this(length, position, Color.DEFAULT_COLOR);
+    public Parallelogram(double lengthA,double lengthB,double angle, Position position) {
+        this(lengthA,lengthB,angle, position, Color.DEFAULT_COLOR);
     }
 
-    public Line(double length, Position position, Color color) {
-        this.length = length;
+    public Parallelogram(double lengthA,double lengthB,double angle, Position position, Color color) {
+        this.lengthA = lengthA;
+        this.lengthB = lengthB;
+        this.angle = angle;
         this.position = new Position(position);
         this.color = new Color(color);
         this.turn = 0d;
         this.scale = 1d;
     }
 
-    public void setLength(double length) {
-        this.length = length;
+    public void setLengthA(double lengthA) {
+        this.lengthA = lengthA;
         renderingShape();
     }
 
-    public double getLength() {
-        return length;
+    public double getLengthA() {
+        return lengthA;
+    }
+
+    public void setLengthB(double lengthB) {
+        this.lengthB = lengthB;
+        renderingShape();
+    }
+
+    public double getLengthB() {
+        return lengthB;
+    }
+
+    public void setAngle(double angle) {
+        this.angle = angle;
+        renderingShape();
+    }
+
+    public double getAngle() {
+        return angle;
     }
 
     //======== Overriding Object method ==============================================================
     @Override
     public String toString() {
-        return this.getName()+" pos: " + position.toString() + ", col: " + color.toString() + ", length: " + length;
+        return this.getName()+" pos: " + position.toString() + ", col: " + color.toString() + ", length: " + lengthA+"*"+lengthB+", ang: "+angle;
     }
 
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
-        Line line = (Line) object;
-        return length == line.length && scale == line.scale && turn == line.turn && color.equals(line.color);
+        Parallelogram parallelogram = (Parallelogram) object;
+        return lengthA == parallelogram.lengthA && lengthB == parallelogram.lengthB && angle == parallelogram.angle && scale == parallelogram.scale && turn == parallelogram.turn && color.equals(parallelogram.color);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(length, scale, turn) + color.hashCode();
+        return Objects.hash(lengthA,lengthB,angle, scale, turn) + color.hashCode();
     }
 
     //======== Overriding Shape method ==============================================================
     @Override
     public String getName() {
-        return "Line";
+        return "Parallelogram";
     }
 
     @Override
@@ -84,3 +106,5 @@ public class Line extends Shape implements Scaling, Rotation {
         return scale;
     }
 }
+
+
